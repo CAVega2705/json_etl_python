@@ -10,6 +10,7 @@
 import json
 
 
+
 def serializar():
     print("Funcion que genera un archivo JSON")
     # JSON Serialize
@@ -26,10 +27,27 @@ def serializar():
     # Que su lista de prendas dentro del JSON tenga al menos 2 prendas
 
     # json_data = {...}
+    cristian_json = {
+                    "Nombre": "Cristian",
+                    "Apellido": "Vega",
+                    "Edad": "32",
+                    "Residencia": "Santa Rosa, L.P."
+                    }
+    data_json = {
+                "Pantalones": "10",
+                "Remeras": "8",
+                "Buzos": "15",
+                "Zapatillas": "2",
+    }
 
+
+    json_test = {"Cristian": cristian_json, "Data": data_json}
+    print(json_test)
     # Una vez que finalice el JSON realice un "dump" para almacenarlo en
     # un archivo que usted defina
-
+    with open ('mi_1er_json.json', 'w') as jsonfile:
+        data = [json_test]
+        json.dump(data, jsonfile, indent=4)
     # Observe el archivo y verifique que se almaceno lo deseado
 
 
@@ -39,6 +57,11 @@ def deserializar():
     # Basado en la función  anterior debe abrir y leer el contenido
     # del archivo y guardarlo en un objeto JSON utilizando el método
     # load()
+    with open('mi_1er_json.json', 'r') as jsonfile:
+        json_data = json.load(jsonfile)
+
+    json_string = json.dumps(json_data, indent=4)
+    print(json_string)
 
     # Luego debe convertir ese JSON data en json_string utilizando
     # el método "dumps" y finalmente imprimir en pantalla el resultado

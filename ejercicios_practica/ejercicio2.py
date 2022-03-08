@@ -8,6 +8,7 @@
 # que aparecen en verde con el hashtag "#"
 
 import json
+from turtle import color
 import requests
 
 import matplotlib.pyplot as plt
@@ -45,5 +46,56 @@ if __name__ == '__main__':
     # para imprimir cuantos títulos completó cada usuario
     # y verifique si los primeros usuarios (mirando la página a ojo)
     # los datos recolectados son correctos.
+
+    data =  requests.get("https://jsonplaceholder.typicode.com/todos")
+    respuestas = data.json()
+    userID_1 = 0
+    userID_2 = 0
+    userID_3 = 0
+    userID_4 = 0
+    userID_5 = 0
+    userID_6 = 0
+    userID_7 = 0
+    userID_8 = 0
+    userID_9 = 0
+    userID_10 = 0
+
+    for user in respuestas:
+        if user['completed'] == True:
+            if user['userId'] == 1:
+                userID_1 = userID_1 + 1
+            elif user['userId'] == 2:
+                userID_2 = userID_2 + 1
+            elif user['userId'] == 3:
+                userID_3 = userID_3 + 1
+            elif user['userId'] == 4:
+                userID_4 = userID_4 + 1
+            elif user['userId'] == 5:
+                userID_5 = userID_5 + 1
+            elif user['userId'] == 6:
+                userID_6 = userID_6 + 1
+            elif user['userId'] == 7:
+                userID_7 = userID_7 + 1
+            elif user['userId'] == 8:
+                userID_8 = userID_8 + 1
+            elif user['userId'] == 9:
+                userID_9 = userID_9 + 1
+            elif user['userId'] == 10:
+                userID_10 = userID_10 + 1
+
+    notas = [userID_1, userID_2, userID_3, userID_4, userID_5, userID_6, userID_7, userID_8, userID_9, userID_10]
+    usuarios = [1,2,3,4,5,6,7,8,9,10]
+
+    fig = plt.figure()
+    plot = fig.add_subplot()
+
+    plot.bar(usuarios, notas, label='Pruebas Completas')           
+    plot.set_facecolor('darkred')
+    plot.set_title("Títulos completados por cada usuario")
+    plot.set_ylabel("Cantidad de Titulos")
+    plot.set_xlabel("UserId")
+    plot.set_xticks(range(1, 11))
+    plot.set_yticks(range(0, 15))
+    plt.show()  
 
     print("terminamos")
